@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Link, Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Header from "./Components/Header";
 import LoginModal from "./Components/LoginModal";
