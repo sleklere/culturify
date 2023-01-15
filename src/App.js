@@ -1,39 +1,39 @@
-import { Fragment, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Fragment, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 
-import Header from "./Components/Header";
-import LoginModal from "./Components/LoginModal";
-import RegisterModal from "./Components/RegisterModal";
-import Login from "./pages/Login";
+import Header from './Components/Header'
+import LoginModal from './Components/LoginModal'
+import RegisterModal from './Components/RegisterModal'
+import Login from './pages/Login'
 
 // import styles from "./App.module.css";
 
 function App() {
-  const [loginVisible, setLoginVisible] = useState(false);
-  const [registerVisible, setRegisterVisible] = useState(false);
+  const [loginVisible, setLoginVisible] = useState(false)
+  const [registerVisible, setRegisterVisible] = useState(false)
 
   const showLogin = function () {
-    setRegisterVisible(false);
-    setLoginVisible(true);
-  };
+    setRegisterVisible(false)
+    setLoginVisible(true)
+  }
 
   const hideLogin = function () {
-    setLoginVisible(false);
-  };
+    setLoginVisible(false)
+  }
 
   const showRegister = function () {
-    setLoginVisible(false);
-    setRegisterVisible(true);
-  };
+    setLoginVisible(false)
+    setRegisterVisible(true)
+  }
 
   const hideRegister = function () {
-    setRegisterVisible(false);
-  };
+    setRegisterVisible(false)
+  }
 
   return (
     <Routes>
       <Route
-        path="/"
+        path='/'
         element={
           <Fragment>
             <Header onClickLoginBtn={showLogin}></Header>
@@ -46,9 +46,9 @@ function App() {
           </Fragment>
         }
       />
-      <Route path="/login" element={<Login />} />
+      <Route path='/login' element={<Login />} />
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App
