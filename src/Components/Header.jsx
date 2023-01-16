@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { userActions } from '../store/user-slice'
 import styles from './Header.module.css'
 
-const Header = props => {
+function Header() {
   // Use Redux for app-wide state 'userLoggedIn'
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const Header = props => {
         )}
         {userLogged && (
           <Link
-            to={'#'}
+            to={'/profile'}
             className={`${styles['profile-link']} ${styles['nav-link']}`}
           >
             <div className={styles['nav-profile-img']}></div>
