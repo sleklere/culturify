@@ -43,6 +43,8 @@
 
 .media-links-div {
   margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .media-link {
@@ -50,4 +52,11 @@
   font-size: 1.6rem;
   color: #444;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.icon {
+  color: #222;
 }

@@ -2,6 +2,9 @@ import { Fragment } from 'react'
 import Header from '../Components/Header'
 import styles from './Profile.module.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
+
 function Profile() {
   return (
     <Fragment>
@@ -25,7 +28,17 @@ function Profile() {
               rel='noreferrer'
               className={styles['media-link']}
             >
+              <FontAwesomeIcon icon={faTwitter} />
               claire_tw
+            </a>
+            <a
+              href='https://instagram.com'
+              target='_blank'
+              rel='noreferrer'
+              className={styles['media-link']}
+            >
+              <FontAwesomeIcon icon={faInstagram} />
+              claire_ig
             </a>
           </div>
         </div>
