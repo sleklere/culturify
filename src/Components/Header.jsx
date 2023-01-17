@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { userActions } from '../store/user-slice'
 import styles from './Header.module.css'
 
@@ -18,24 +18,32 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <Link to={'/'} className={styles['nav-link']}>
+      <NavLink to={'/'} className={styles['nav-link']} end>
         App Name
-      </Link>
+      </NavLink>
       <nav>
-        {!userLogged && <Link className='btn'>Register</Link>}
+        {!userLogged && (
+          <Link to={'/register'} className='btn'>
+            Register
+          </Link>
+        )}
         {!userLogged && (
           <Link to={'/login'} className='btn'>
             Login
           </Link>
         )}
         {userLogged && (
-          <Link
+          <NavLink
             to={'/profile'}
-            className={`${styles['profile-link']} ${styles['nav-link']}`}
+            className={({ isActive }) =>
+              `${styles['profile-link']} ${styles['nav-link']} ${
+                isActive ? styles.active : undefined
+              }`
+            }
           >
             <div className={styles['nav-profile-img']}></div>
             Profile
-          </Link>
+          </NavLink>
         )}
         {userLogged && (
           <button className='btn' onClick={logoutHandler}>

@@ -1,20 +1,23 @@
 import { Fragment } from 'react'
-import Header from '../Components/Header'
 import styles from './Profile.module.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { useParams } from 'react-router-dom'
 
 function Profile() {
+  const params = useParams()
+
+  // params.user
+
   return (
     <Fragment>
-      <Header />
       {/* <h1>PROFILE PAGE</h1> */}
       <div className={styles.background}></div>
       <div className={styles['user-img-info']}>
         <div className={styles['profile-img']}></div>
         <div className={styles['user-info']}>
-          <h1 className={styles.name}>Claire</h1>
+          <h1 className={styles.name}>{params.user}</h1>
           <p className={styles.description}>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum,
             unde praesentium? Necessitatibus molestias illum similique

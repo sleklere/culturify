@@ -1,56 +1,33 @@
-import { Fragment, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ErrorPage from './pages/Error'
+import Home from './pages/Home'
+// import Login from './pages/Login'
+// import Register from './pages/Register'
+import Profile from './pages/User/Profile'
+import RootLayout from './pages/RootLayout'
+import UserFormsLayout from './pages/User/UserFormsLayout'
 
-import Header from './Components/Header'
-import LoginModal from './Components/LoginModal'
-import RegisterModal from './Components/RegisterModal'
-import Login from './pages/Login'
-import Profile from './pages/Profile'
-
-// import styles from "./App.module.css";
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '',
+        element: <Home />,
+      },
+      // { path: '/login', element: <Login /> },
+      { path: '/register', element: <UserFormsLayout register={true} /> },
+      { path: '/login', element: <UserFormsLayout login={true} /> },
+      { path: '/profile', element: <Profile /> },
+      { path: '/users/:user', element: <Profile /> },
+    ],
+  },
+])
 
 function App() {
-  const [loginVisible, setLoginVisible] = useState(false)
-  const [registerVisible, setRegisterVisible] = useState(false)
-
-  const showLogin = function () {
-    setRegisterVisible(false)
-    setLoginVisible(true)
-  }
-
-  const hideLogin = function () {
-    setLoginVisible(false)
-  }
-
-  const showRegister = function () {
-    setLoginVisible(false)
-    setRegisterVisible(true)
-  }
-
-  const hideRegister = function () {
-    setRegisterVisible(false)
-  }
-
-  return (
-    <Routes>
-      <Route
-        path='/'
-        element={
-          <Fragment>
-            <Header onClickLoginBtn={showLogin}></Header>
-            {loginVisible && (
-              <LoginModal onClose={hideLogin} showRegister={showRegister} />
-            )}
-            {registerVisible && (
-              <RegisterModal onClose={hideRegister} showLogin={showLogin} />
-            )}
-          </Fragment>
-        }
-      />
-      <Route path='/login' element={<Login />} />
-      <Route path='/profile' element={<Profile />} />
-    </Routes>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
