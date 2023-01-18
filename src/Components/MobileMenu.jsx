@@ -1,17 +1,15 @@
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { userActions } from '../store/user-slice'
-import styles from './Header.module.css'
+import styles from './MobileMenu.module.css'
 
-function Header(props) {
-  // Use Redux for app-wide state 'userLoggedIn'
+function MobileMenu(props) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const userLogged = useSelector(state => state.user.loggedIn)
 
-  // console.log('user logged state: ', userLogged)
+  const userLogged = useSelector(state => state.user.loggedIn)
 
   function logoutHandler() {
     dispatch(userActions.logout())
@@ -19,18 +17,28 @@ function Header(props) {
   }
 
   return (
-    <header className={styles.header}>
-      <NavLink to={'/'} className={styles['nav-link']} end>
-        App Name
-      </NavLink>
-      <nav>
+    <div className={styles['menu-container']}>
+      <FontAwesomeIcon
+        icon={faClose}
+        className={styles['close-menu']}
+        onClick={props.onMenuClose}
+      />
+      <ul className={styles.nav}>
         {!userLogged && (
-          <Link to={'/register'} className='btn'>
+          <Link
+            to={'/register'}
+            onClick={props.onMenuClose}
+            className={styles['link-item']}
+          >
             Register
           </Link>
         )}
         {!userLogged && (
-          <Link to={'/login'} className='btn'>
+          <Link
+            to={'/login'}
+            onClick={props.onMenuClose}
+            className={styles['link-item']}
+          >
             Login
           </Link>
         )}
@@ -42,6 +50,7 @@ function Header(props) {
                 isActive ? styles.active : undefined
               }`
             }
+            onClick={props.onMenuClose}
           >
             <div className={styles['nav-profile-img']}></div>
             Profile
@@ -52,12 +61,9 @@ function Header(props) {
             Logout
           </button>
         )}
-      </nav>
-      <button className={styles['burger-menu']} onClick={props.onMenuClick}>
-        <FontAwesomeIcon icon={faBars} />
-      </button>
-    </header>
+      </ul>
+    </div>
   )
 }
 
-export default Header
+export default MobileMenu

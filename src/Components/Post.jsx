@@ -10,7 +10,7 @@ function Post(props) {
   return (
     <div className={styles.post}>
       <Link
-        to={`/users/${userInfo.name}-${userInfo.lastName}`}
+        to={`/users/${userInfo.id}`}
         className={`${styles['profile-link']} ${styles['nav-link']} `}
       >
         <div

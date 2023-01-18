@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { userActions } from '../../store/user-slice'
-import styles from '../../pages/Login-Register.module.css'
+import styles from '../../pages/User/LoginRegister.module.css'
 
 function LoginForm() {
   const dispatch = useDispatch()

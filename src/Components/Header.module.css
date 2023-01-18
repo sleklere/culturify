@@ -1,7 +1,7 @@
 .header {
   /* position: fixed; */
   width: 100%;
-  height: 8rem;
+  height: var(--header-height);
   background-color: #fff;
   display: flex;
   justify-content: space-between;
@@ -49,4 +49,36 @@ nav {
   background: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')
     no-repeat center;
   background-size: cover;
+}
+
+.burger-menu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* header changes to mobile version */
+  .header {
+    padding: 0 2rem;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .burger-menu {
+    display: block;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    border: none;
+    transition: all 0.3s;
+    border-radius: 5px;
+    color: #fff;
+    background-color: var(--main-color);
+  }
 }

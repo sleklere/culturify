@@ -1,9 +1,8 @@
-main {
+.login-register-main {
   display: flex;
 }
 
 .left-side {
-  background-color: red;
   width: 50%;
   overflow: hidden;
   height: 100vh;
@@ -206,5 +205,20 @@ main {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .left-side {
+    display: none;
+  }
+
+  .right-side {
+    margin-top: 10%;
+    max-width: 100%;
+  }
+
+  .login-with-btn {
+    padding: 1rem;
   }
 }

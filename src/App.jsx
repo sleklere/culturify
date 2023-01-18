@@ -1,9 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './pages/Error'
-import Home from './pages/Home'
-// import Login from './pages/Login'
-// import Register from './pages/Register'
-import Profile from './pages/User/Profile'
+import Home, { loader as usersLoader } from './pages/Home'
+import Profile, { loader as userLoader } from './pages/User/Profile'
 import RootLayout from './pages/RootLayout'
 import UserFormsLayout from './pages/User/UserFormsLayout'
 
@@ -14,14 +12,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '',
+        index: true,
         element: <Home />,
+        loader: usersLoader,
       },
-      // { path: '/login', element: <Login /> },
-      { path: '/register', element: <UserFormsLayout register={true} /> },
-      { path: '/login', element: <UserFormsLayout login={true} /> },
-      { path: '/profile', element: <Profile /> },
-      { path: '/users/:user', element: <Profile /> },
+      { path: 'register', element: <UserFormsLayout register={true} /> },
+      { path: 'login', element: <UserFormsLayout login={true} /> },
+      { path: 'profile', element: <Profile /> },
+      { path: 'users/:userId', element: <Profile />, loader: userLoader },
     ],
   },
 ])

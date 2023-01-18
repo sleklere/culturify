@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@400;500;600;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 /* 
 html,
@@ -22,13 +22,14 @@ html {
 
 body {
   /* font-family: "Nunito", sans-serif; */
-  font-family: "Lato", sans-serif;
+  /* font-family: 'Lato', sans-serif; */
   background-color: #f3f3f3;
 }
 
 :root {
   --main-color: #009688;
   --main-color-dark: #00796b;
+  --header-height: 8rem;
 }
 
 .btn {

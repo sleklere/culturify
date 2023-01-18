@@ -1,36 +1,34 @@
-import { Fragment } from 'react'
+import { json, useLoaderData } from 'react-router-dom'
 
-// import styles from './Home.module.css'
+import styles from './Home.module.css'
 import Post from '../Components/Post'
 
-const DUMMY_USERS = [
-  {
-    id: 'u1',
-    name: 'Jon',
-    lastName: 'Doe',
-    image:
-      'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-    postContent:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumendaeos dicta sequi a reprehenderit. Sunt at pariatur autem, natus, sequiexpedita, sapiente ea amet debitis doloribus odio sint similiqueperspiciatis.',
-  },
-  {
-    id: 'u2',
-    name: 'Jane',
-    lastName: 'Doe',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    postContent: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  },
-]
-
 function Home() {
+  const data = useLoaderData()
+
   return (
-    <Fragment>
-      {DUMMY_USERS.map(user => (
-        <Post userInfo={user} key={user.id} />
-      ))}
-    </Fragment>
+    <main className={styles.main}>
+      <div className={styles['posts-container']}>
+        {data.map(user => (
+          <Post userInfo={user} key={user.id} />
+        ))}
+        <p className={styles['feed-end']}>End of feed.</p>
+      </div>
+    </main>
   )
+}
+
+export async function loader() {
+  const response = await fetch('http://localhost:5000/test-users')
+
+  if (!response.ok) {
+    // throw new Response(JSON.stringify({ message: 'Could not fetch users.' }), {
+    //   status: 500,
+    // })
+    return json({ message: 'Could not fetch users.' }, { status: 500 })
+  } else {
+    return response
+  }
 }
 
 export default Home

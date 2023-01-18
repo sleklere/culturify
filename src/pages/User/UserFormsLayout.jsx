@@ -1,12 +1,12 @@
 import { Fragment } from 'react'
 import LoginForm from '../../Components/User/LoginForm'
 import RegisterForm from '../../Components/User/RegisterForm'
-import styles from './Login-Register.module.css'
+import styles from './LoginRegister.module.css'
 
 function UserFormsLayout(props) {
   return (
     <Fragment>
-      <main>
+      <main className={styles['login-register-main']}>
         <div
           className={styles['left-side']}
           style={{
