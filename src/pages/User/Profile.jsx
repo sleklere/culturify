@@ -5,8 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { json, useLoaderData } from 'react-router-dom'
 
+import defaultUserImg from './default_user_img2.jpg'
+
 function Profile() {
   const user = useLoaderData()
+
+  console.log(user)
+  console.log(user.image)
 
   return (
     <Fragment>
@@ -15,18 +20,15 @@ function Profile() {
       <div className={styles['user-img-info']}>
         <div
           className={styles['profile-img']}
-          style={{ backgroundImage: `url(${user.image})` }}
+          style={{
+            backgroundImage: `url(${user.image || defaultUserImg})`,
+          }}
         ></div>
         <div className={styles['user-info']}>
-          <h1 className={styles.name}>{user.name}</h1>
-          <p className={styles.description}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum,
-            unde praesentium? Necessitatibus molestias illum similique
-            repellendus dolorum provident quibusdam neque. Pariatur quaerat
-            delectus blanditiis sequi soluta, libero nobis dicta quam!
-          </p>
+          <h1 className={styles.name}>{user.firstName}</h1>
+          <p className={styles.description}>{user.description}</p>
           <div className={styles['media-links-div']}>
-            {user.socialMediaLinks.twitter && (
+            {user.tw_user && (
               <a
                 href='https://twitter.com'
                 target='_blank'
@@ -34,10 +36,10 @@ function Profile() {
                 className={styles['media-link']}
               >
                 <FontAwesomeIcon icon={faTwitter} />
-                {user.socialMediaLinks.twitter}
+                {user.tw_user}
               </a>
             )}
-            {user.socialMediaLinks.instagram && (
+            {user.ig_user && (
               <a
                 href='https://instagram.com'
                 target='_blank'
@@ -45,7 +47,7 @@ function Profile() {
                 className={styles['media-link']}
               >
                 <FontAwesomeIcon icon={faInstagram} />
-                {user.socialMediaLinks.instagram}
+                {user.ig_user}
               </a>
             )}
           </div>
@@ -56,9 +58,7 @@ function Profile() {
 }
 
 export async function loader({ request, params }) {
-  const response = await fetch(
-    `http://localhost:5000/test-users/${params.userId}`
-  )
+  const response = await fetch(`http://localhost:5000/users/${params.userId}`)
 
   if (!response.ok) {
     throw json({

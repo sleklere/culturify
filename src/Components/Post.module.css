@@ -24,6 +24,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -37,6 +38,14 @@
 .post-actions svg:hover {
   color: #ffa000;
   cursor: pointer;
+}
+
+.likes,
+.comments {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 .nav-link {

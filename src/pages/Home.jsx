@@ -9,8 +9,8 @@ function Home() {
   return (
     <main className={styles.main}>
       <div className={styles['posts-container']}>
-        {data.map(user => (
-          <Post userInfo={user} key={user.id} />
+        {data.map(post => (
+          <Post post={post} key={post.id} />
         ))}
         <p className={styles['feed-end']}>End of feed.</p>
       </div>
@@ -19,7 +19,7 @@ function Home() {
 }
 
 export async function loader() {
-  const response = await fetch('http://localhost:5000/test-users')
+  const response = await fetch('http://localhost:5000/posts')
 
   if (!response.ok) {
     // throw new Response(JSON.stringify({ message: 'Could not fetch users.' }), {

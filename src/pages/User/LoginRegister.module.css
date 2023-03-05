@@ -51,6 +51,17 @@
   flex-direction: column;
 }
 
+.errors {
+  margin-bottom: 2rem;
+}
+
+.errors-item {
+  list-style: none;
+  font-size: 1.6rem;
+  color: crimson;
+  margin-bottom: 5px;
+}
+
 .form-container label {
   display: flex;
   flex-direction: column;

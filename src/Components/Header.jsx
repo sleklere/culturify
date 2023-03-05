@@ -21,7 +21,7 @@ function Header(props) {
   return (
     <header className={styles.header}>
       <NavLink to={'/'} className={styles['nav-link']} end>
-        App Name
+        Culturify
       </NavLink>
       <nav>
         {!userLogged && (
