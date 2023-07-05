@@ -1,37 +1,28 @@
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFireAlt } from '@fortawesome/free-solid-svg-icons'
-import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
-import styles from './Post.module.css'
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFireAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
+import ProfileLink from "./ProfileLink";
 
 function Post(props) {
-  const { userInfo } = props
+  const { post } = props;
 
   return (
-    <div className={styles.post}>
-      <Link
-        to={`/users/${userInfo.id}`}
-        className={`${styles['profile-link']} ${styles['nav-link']} `}
-      >
-        <div
-          className={styles['nav-profile-img']}
-          style={{
-            background: `url(${props.userInfo.image}) no-repeat center`,
-            backgroundSize: 'cover',
-          }}
-        ></div>
-        {userInfo.name}
-      </Link>
-      <div className={styles['post-content']}>
-        <p>{props.userInfo.postContent}</p>
+    <div className={"post"}>
+      <ProfileLink
+        linkTo={post.user._id}
+        name={post.user.firstName}
+        img={"user_default.png"}
+      />
+      <div className="post__content">
+        <p>{post.text}</p>
       </div>
-      <div className={styles['post-actions']}>
-        <FontAwesomeIcon icon={faFireAlt} />
-        {/* <FontAwesomeIcon icon={faComment} /> */}
-        <FontAwesomeIcon icon={faCommentDots} />
+      <div className={["post__actions"]}>
+        <FontAwesomeIcon icon={faFireAlt} className="post__actions-icon" />
+        <FontAwesomeIcon icon={faCommentDots} className="post__actions-icon" />
       </div>
     </div>
-  )
+  );
 }
 
-export default Post
+export default Post;

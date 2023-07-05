@@ -1,52 +1,51 @@
-import ReactDOM from 'react-dom'
-import { Fragment, useState } from 'react'
-import Header from '../Components/Header'
-import { useRouteError } from 'react-router-dom'
-import styles from './Error.module.css'
-import MobileMenu from '../Components/MobileMenu'
+import ReactDOM from "react-dom";
+import { Fragment, useState } from "react";
+import Header from "../Components/Header";
+import { useRouteError } from "react-router-dom";
+import MobileNav from "../Components/MobileNav";
 
-const overlays = document.getElementById('overlays')
+const overlays = document.getElementById("overlays");
 
 function ErrorPage() {
-  const error = useRouteError()
+  const error = useRouteError();
 
-  let title = 'An error ocurred'
-  let message = 'Something went wrong'
+  let title = "An error ocurred";
+  let message = "Something went wrong";
 
   if (error.status === 500) {
     // message = JSON.parse(error.data).message
-    message = error.data.message
+    message = error.data.message;
   }
 
   if (error.status === 404) {
-    title = 'Not found'
-    message = 'No page or resource was found'
+    title = "Not found";
+    message = "No page or resource was found";
   }
 
-  const [mobileMenuVisble, setMobileMenuVisble] = useState(false)
+  const [mobileNavVisible, setMobileNavVisible] = useState(false);
 
-  function showMobileMenu() {
-    setMobileMenuVisble(true)
+  function showMobileNav() {
+    setMobileNavVisible(true);
   }
-  function closeMobileMenu() {
-    setMobileMenuVisble(false)
+  function closeMobileNav() {
+    setMobileNavVisible(false);
   }
 
   return (
     <Fragment>
-      {mobileMenuVisble &&
+      {mobileNavVisible &&
         ReactDOM.createPortal(
-          <MobileMenu onMenuClose={closeMobileMenu} />,
+          <MobileNav onNavClose={closeMobileNav} />,
           overlays
         )}
-      <Header onMenuClick={showMobileMenu} />
-      <main className={styles['error-main']}>
-        <h1 className={styles.status}>{error.status}</h1>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.message}>{message}</p>
+      <Header onMenuClick={showMobileNav} />
+      <main className={"error-main"}>
+        <h1 className={"status"}>{error.status}</h1>
+        <h1 className={"title"}>{title}</h1>
+        <p className={"message"}>{message}</p>
       </main>
     </Fragment>
-  )
+  );
 }
 
-export default ErrorPage
+export default ErrorPage;

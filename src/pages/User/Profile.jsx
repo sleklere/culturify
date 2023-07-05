@@ -1,37 +1,33 @@
-import { Fragment } from 'react'
-import styles from './Profile.module.css'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { json, useLoaderData } from 'react-router-dom'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { json, useLoaderData } from "react-router-dom";
 
 function Profile() {
-  const user = useLoaderData()
+  const user = useLoaderData();
 
   return (
-    <Fragment>
-      {/* <h1>PROFILE PAGE</h1> */}
-      <div className={styles.background}></div>
-      <div className={styles['user-img-info']}>
+    <div className="profile">
+      <div className="profile__background"></div>
+      <div className="user">
         <div
-          className={styles['profile-img']}
+          className="user__img"
           style={{ backgroundImage: `url(${user.image})` }}
         ></div>
-        <div className={styles['user-info']}>
-          <h1 className={styles.name}>{user.name}</h1>
-          <p className={styles.description}>
+        <div className="user__details">
+          <h1 className="user__name">{user.name}</h1>
+          <p className="user__description">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum,
             unde praesentium? Necessitatibus molestias illum similique
             repellendus dolorum provident quibusdam neque. Pariatur quaerat
             delectus blanditiis sequi soluta, libero nobis dicta quam!
           </p>
-          <div className={styles['media-links-div']}>
+          <div className="user__social-links">
             {user.socialMediaLinks.twitter && (
               <a
-                href='https://twitter.com'
-                target='_blank'
-                rel='noreferrer'
-                className={styles['media-link']}
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="media-link"
               >
                 <FontAwesomeIcon icon={faTwitter} />
                 {user.socialMediaLinks.twitter}
@@ -39,10 +35,10 @@ function Profile() {
             )}
             {user.socialMediaLinks.instagram && (
               <a
-                href='https://instagram.com'
-                target='_blank'
-                rel='noreferrer'
-                className={styles['media-link']}
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="media-link"
               >
                 <FontAwesomeIcon icon={faInstagram} />
                 {user.socialMediaLinks.instagram}
@@ -51,23 +47,23 @@ function Profile() {
           </div>
         </div>
       </div>
-    </Fragment>
-  )
+    </div>
+  );
 }
 
 export async function loader({ request, params }) {
   const response = await fetch(
     `http://localhost:5000/test-users/${params.userId}`
-  )
+  );
 
   if (!response.ok) {
     throw json({
-      message: 'Could not fetch requested user information',
+      message: "Could not fetch requested user information",
       status: 500,
-    })
+    });
   } else {
-    return response
+    return response;
   }
 }
 
-export default Profile
+export default Profile;

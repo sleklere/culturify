@@ -1,33 +1,33 @@
-import ReactDOM from 'react-dom'
-import { Fragment, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from '../Components/Header'
-import MobileMenu from '../Components/MobileMenu'
+import ReactDOM from "react-dom";
+import { Fragment, useState } from "react";
+import { Outlet } from "react-router-dom";
+import Header from "../Components/Header";
+import MobileNav from "../Components/MobileNav";
 
-const overlays = document.getElementById('overlays')
+const overlays = document.getElementById("overlays");
 
 function RootLayout() {
-  const [mobileMenuVisble, setMobileMenuVisble] = useState(false)
+  const [mobileNavVisible, setMobileNavVisible] = useState(false);
 
-  function showMobileMenu() {
-    setMobileMenuVisble(true)
+  function showMobileNav() {
+    setMobileNavVisible(true);
   }
-  function closeMobileMenu() {
-    setMobileMenuVisble(false)
+  function closeMobileNav() {
+    setMobileNavVisible(false);
   }
 
   return (
     <Fragment>
-      {mobileMenuVisble &&
+      {mobileNavVisible &&
         ReactDOM.createPortal(
-          <MobileMenu onMenuClose={closeMobileMenu} />,
+          <MobileNav onNavClose={closeMobileNav} />,
           overlays
         )}
-      <Header onMenuClick={showMobileMenu} />
+      <Header onMenuClick={showMobileNav} />
       {/* {navigation.state === 'loading' && <p>Loading...</p>} */}
       <Outlet />
     </Fragment>
-  )
+  );
 }
 
-export default RootLayout
+export default RootLayout;

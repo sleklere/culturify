@@ -1,34 +1,33 @@
-import { json, useLoaderData } from 'react-router-dom'
+import { json, useLoaderData } from "react-router-dom";
 
-import styles from './Home.module.css'
-import Post from '../Components/Post'
+import Post from "../Components/Post";
 
 function Home() {
-  const data = useLoaderData()
+  const data = useLoaderData();
 
   return (
-    <main className={styles.main}>
-      <div className={styles['posts-container']}>
-        {data.map(user => (
-          <Post userInfo={user} key={user.id} />
+    <main className={"main"}>
+      <div className={"posts"}>
+        {data.data.posts.map((post) => (
+          <Post post={post} key={post._id} />
         ))}
-        <p className={styles['feed-end']}>End of feed.</p>
+        <p className={"posts__end"}>End of feed.</p>
       </div>
     </main>
-  )
+  );
 }
 
 export async function loader() {
-  const response = await fetch('http://localhost:5000/test-users')
+  const response = await fetch("http://localhost:5000/api/v1/posts");
 
   if (!response.ok) {
     // throw new Response(JSON.stringify({ message: 'Could not fetch users.' }), {
     //   status: 500,
     // })
-    return json({ message: 'Could not fetch users.' }, { status: 500 })
+    return json({ message: "Could not fetch users." }, { status: 500 });
   } else {
-    return response
+    return response;
   }
 }
 
-export default Home
+export default Home;

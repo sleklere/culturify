@@ -1,63 +1,64 @@
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { userActions } from '../store/user-slice'
-import styles from './Header.module.css'
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { userActions } from "../store/user-slice";
+import ProfileLink from "./ProfileLink";
 
 function Header(props) {
   // Use Redux for app-wide state 'userLoggedIn'
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const userLogged = useSelector(state => state.user.loggedIn)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userLogged = useSelector((state) => state.user.loggedIn);
 
   // console.log('user logged state: ', userLogged)
 
   function logoutHandler() {
-    dispatch(userActions.logout())
-    navigate('/')
+    dispatch(userActions.logout());
+    navigate("/");
   }
 
   return (
-    <header className={styles.header}>
-      <NavLink to={'/'} className={styles['nav-link']} end>
-        App Name
+    <header className="header">
+      <NavLink to={"/"} className={`header__brand-link nav-link`} end>
+        Culturify
       </NavLink>
-      <nav>
+      <nav className="header__nav">
         {!userLogged && (
-          <Link to={'/register'} className='btn'>
+          <NavLink to={"/register"} className="btn">
             Register
-          </Link>
+          </NavLink>
         )}
         {!userLogged && (
-          <Link to={'/login'} className='btn'>
+          <NavLink to={"/login"} className="btn">
             Login
-          </Link>
-        )}
-        {userLogged && (
-          <NavLink
-            to={'/profile'}
-            className={({ isActive }) =>
-              `${styles['profile-link']} ${styles['nav-link']} ${
-                isActive ? styles.active : undefined
-              }`
-            }
-          >
-            <div className={styles['nav-profile-img']}></div>
-            Profile
           </NavLink>
         )}
         {userLogged && (
-          <button className='btn' onClick={logoutHandler}>
+          // <NavLink
+          //   to={"/profile"}
+          //   className={({ isActive }) =>
+          //     `profile__link header__link ${
+          //       isActive ? "profile-link--active" : undefined
+          //     }`
+          //   }
+          // >
+          //   <div className="header__profile-link-img"></div>
+          //   Profile
+          // </NavLink>
+          <ProfileLink linkTo={""} name={""} img={"user_default.png"} />
+        )}
+        {userLogged && (
+          <button className="btn" onClick={logoutHandler}>
             Logout
           </button>
         )}
       </nav>
-      <button className={styles['burger-menu']} onClick={props.onMenuClick}>
+      <button className="burger-menu" onClick={props.onMenuClick}>
         <FontAwesomeIcon icon={faBars} />
       </button>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

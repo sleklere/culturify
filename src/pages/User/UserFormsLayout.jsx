@@ -1,14 +1,13 @@
-import { Fragment } from 'react'
-import LoginForm from '../../Components/User/LoginForm'
-import RegisterForm from '../../Components/User/RegisterForm'
-import styles from './LoginRegister.module.css'
+import { Fragment } from "react";
+import LoginForm from "../../Components/User/LoginForm";
+import RegisterForm from "../../Components/User/RegisterForm";
 
 function UserFormsLayout(props) {
   return (
     <Fragment>
-      <main className={styles['login-register-main']}>
+      <main className="auth-container">
         <div
-          className={styles['left-side']}
+          className="image-side"
           style={{
             backgroundImage: `${
               props.register
@@ -17,13 +16,13 @@ function UserFormsLayout(props) {
             }`,
           }}
         ></div>
-        <div className={styles['right-side']}>
+        <div className="form-side">
           {props.register && <RegisterForm />}
           {props.login && <LoginForm />}
         </div>
       </main>
     </Fragment>
-  )
+  );
 }
 
-export default UserFormsLayout
+export default UserFormsLayout;

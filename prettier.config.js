@@ -1,6 +1,6 @@
-module.exports = {
-  semi: false,
-  arrowParens: "avoid",
-  singleQuote: true,
-  jsxSingleQuote: true,
-}
+// module.exports = {
+//   semi: true,
+//   arrowParens: "avoid",
+//   singleQuote: false,
+//   jsxSingleQuote: true,
+// }
