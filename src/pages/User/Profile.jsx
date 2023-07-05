@@ -30,10 +30,10 @@ function Profile() {
                 className="media-link"
               >
                 <FontAwesomeIcon icon={faTwitter} />
-                {user.socialMediaLinks.twitter}
+                {user.tw_user}
               </a>
             )}
-            {user.socialMediaLinks.instagram && (
+            {user.ig_user && (
               <a
                 href="https://instagram.com"
                 target="_blank"
@@ -41,7 +41,7 @@ function Profile() {
                 className="media-link"
               >
                 <FontAwesomeIcon icon={faInstagram} />
-                {user.socialMediaLinks.instagram}
+                {user.ig_user}
               </a>
             )}
           </div>
