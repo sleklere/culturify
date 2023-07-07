@@ -4,7 +4,7 @@ import Home, { loader as postsLoader } from "./pages/Home";
 import Profile, { loader as userLoader } from "./pages/User/Profile";
 import { action as registerAction } from "./Components/User/RegisterForm";
 import RootLayout from "./pages/RootLayout";
-import UserFormsLayout from "./pages/User/UserFormsLayout";
+import UserAuthLayout from "./pages/User/UserAuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -19,10 +19,10 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <UserFormsLayout register={true} />,
+        element: <UserAuthLayout register={true} />,
         action: registerAction,
       },
-      { path: "login", element: <UserFormsLayout login={true} /> },
+      { path: "login", element: <UserAuthLayout login={true} /> },
       { path: "profile", element: <Profile /> },
       { path: "users/:userId", element: <Profile />, loader: userLoader },
     ],

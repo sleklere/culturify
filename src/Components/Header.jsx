@@ -10,8 +10,8 @@ function Header(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userLogged = useSelector((state) => state.user.loggedIn);
-
-  // console.log('user logged state: ', userLogged)
+  // console.log(`userLogged is: ${userLogged}`);
+  const user = useSelector((state) => state.user.data);
 
   function logoutHandler() {
     dispatch(userActions.logout());
@@ -46,7 +46,11 @@ function Header(props) {
           //   <div className="header__profile-link-img"></div>
           //   Profile
           // </NavLink>
-          <ProfileLink linkTo={""} name={""} img={"user_default.png"} />
+          <ProfileLink
+            linkTo={user._id}
+            name={user.firstName}
+            img={"user_default.png"}
+          />
         )}
         {userLogged && (
           <button className="btn" onClick={logoutHandler}>

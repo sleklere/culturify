@@ -1,22 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
-  name: 'user',
-  initialState: { loggedIn: false },
+  name: "user",
+  initialState: { data: undefined, loggedIn: false },
   reducers: {
-    login(state) {
+    login(state, action) {
       // login process
       // request to api, etc
 
-      // *temporary*
-      state.loggedIn = true
+      state.loggedIn = true;
+      state.data = action.payload;
     },
     logout(state) {
-      state.loggedIn = false
+      state.loggedIn = false;
+      state.data = undefined;
+      localStorage.removeItem("jwt");
     },
   },
-})
+});
 
-export const userActions = userSlice.actions
+export const userActions = userSlice.actions;
 
-export default userSlice
+export default userSlice;

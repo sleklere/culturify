@@ -6,7 +6,16 @@ function Home() {
   const data = useLoaderData();
 
   return (
-    <main className={"main"}>
+    <main className="main">
+      <div className="new-post">
+        <form>
+          <input
+            type="text"
+            placeholder="What's going on?"
+            className="new-post__content"
+          ></input>
+        </form>
+      </div>
       <div className={"posts"}>
         {data.data.posts.map((post) => (
           <Post post={post} key={post._id} />

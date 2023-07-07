@@ -1,44 +1,113 @@
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { userActions } from "../../store/user-slice";
+import axios from "axios";
+import useInput from "../../Hooks/useInput";
+import { useState } from "react";
 
 function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [formServerError, setFormServerError] = useState("");
 
-  function loginHandler(e) {
+  const {
+    value: email,
+    classes: emailClasses,
+    isValid: emailValid,
+    changeHandler: emailChangeHandler,
+    hasError: emailError,
+    reset: resetEmail,
+  } = useInput((value) => value.includes("@"));
+  const {
+    value: password,
+    classes: passwordClasses,
+    isValid: passwordValid,
+    changeHandler: passwordChangeHandler,
+    hasError: passwordError,
+    reset: resetPassword,
+  } = useInput((value) => value.trim() !== "");
+
+  let formIsValid = false;
+
+  if (emailValid && passwordValid) {
+    formIsValid = true;
+  }
+
+  async function loginHandler(e) {
     e.preventDefault();
-    dispatch(userActions.login());
-    navigate("/");
+    if (!formIsValid) return;
+
+    try {
+      const res = await axios({
+        method: "POST",
+        url: "http://localhost:5000/api/v1/users/login",
+        data: { email, password },
+        withCredentials: true,
+      });
+
+      console.log(res);
+      const user = res.data.data.user;
+
+      user.token = res.data.token;
+      localStorage.setItem("jwt", res.data.token);
+
+      dispatch(userActions.login(user));
+
+      resetEmail();
+      resetPassword();
+
+      navigate("/");
+    } catch (err) {
+      // console.log(err);
+      // console.log(err.response.data.message);
+      setFormServerError(err.response.data.message);
+    }
   }
 
   return (
     <div className="form-container">
       <h1>Login to your account</h1>
-      {/* <form action="/login" method="POST"> */}
+      {formServerError.length >= 1 && (
+        <p className="error-text">{formServerError}</p>
+      )}
       <form onSubmit={loginHandler}>
-        <label>
-          User
-          <input type="text" placeholder="Username" name="userName" />
+        <label className={emailClasses}>
+          Email
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            onChange={emailChangeHandler}
+            value={email}
+          />
+          {emailError && (
+            <p className="error-text">Please enter a valid email</p>
+          )}
         </label>
-        <label>
+        <label className={passwordClasses}>
           Password
-          <input type="password" placeholder="Password" name="password" />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={passwordChangeHandler}
+            value={password}
+          />
+          {passwordError && (
+            <p className="error-text">Please enter a password</p>
+          )}
         </label>
         <button className={`btn auth-submit`} type="submit">
           Login
         </button>
       </form>
-
       <div className="lines-container">
         <div className="lines">
           <p className="text">Or</p>
         </div>
       </div>
-
       <div className="google-auth">
         <button
-          // type=''
           className={`btn google-auth__btn`}
           href="https://www.google.com.ar/?hl=es"
         >

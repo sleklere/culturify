@@ -8,18 +8,23 @@ const overlays = document.getElementById("overlays");
 
 function ErrorPage() {
   const error = useRouteError();
+  console.log(error);
 
   let title = "An error ocurred";
   let message = "Something went wrong";
 
-  if (error.status === 500) {
+  if (error.data?.status === 500) {
     // message = JSON.parse(error.data).message
     message = error.data.message;
   }
 
-  if (error.status === 404) {
+  if (error.data?.status === 404) {
     title = "Not found";
     message = "No page or resource was found";
+  }
+  if (error.data?.status === 401) {
+    title = error.data.title;
+    message = error.data.message;
   }
 
   const [mobileNavVisible, setMobileNavVisible] = useState(false);
@@ -40,7 +45,7 @@ function ErrorPage() {
         )}
       <Header onMenuClick={showMobileNav} />
       <main className={"error-main"}>
-        <h1 className={"status"}>{error.status}</h1>
+        <h1 className={"status"}>{error.data?.status}</h1>
         <h1 className={"title"}>{title}</h1>
         <p className={"message"}>{message}</p>
       </main>

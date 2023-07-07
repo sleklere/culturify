@@ -14,7 +14,7 @@ function ProfileLink(props) {
       <div
         className="profile__link-img"
         style={{
-          backgroundImage: `url(${props.img})`,
+          backgroundImage: `url(${process.env.PUBLIC_URL + `/${props.img}`})`,
         }}
       ></div>
       {props.name}

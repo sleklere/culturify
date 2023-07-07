@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import LoginForm from "../../Components/User/LoginForm";
 import RegisterForm from "../../Components/User/RegisterForm";
 
-function UserFormsLayout(props) {
+function UserAuthLayout(props) {
   return (
     <Fragment>
       <main className="auth-container">
@@ -25,4 +25,4 @@ function UserFormsLayout(props) {
   );
 }
 
-export default UserFormsLayout;
+export default UserAuthLayout;

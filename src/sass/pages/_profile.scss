@@ -12,6 +12,7 @@
     &__img {
       height: 20rem;
       width: 20rem;
+      background-image: url("./../../Assets/user_default.png");
       /* background: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')
   no-repeat center; */
       background-repeat: no-repeat;
@@ -20,7 +21,7 @@
       border-radius: 100%;
       margin-top: -10rem;
       margin-left: 20rem;
-      border: 5px solid #fff;
+      // border: 5px solid #fff;
       box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
         rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
