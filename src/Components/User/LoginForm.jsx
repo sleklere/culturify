@@ -48,10 +48,7 @@ function LoginForm() {
       console.log(res);
       const user = res.data.data.user;
 
-      user.token = res.data.token;
-      localStorage.setItem("jwt", res.data.token);
-
-      dispatch(userActions.login(user));
+      dispatch(userActions.login({ user, token: res.data.token }));
 
       resetEmail();
       resetPassword();

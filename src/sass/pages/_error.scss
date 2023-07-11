@@ -9,15 +9,18 @@
 .status {
   font-size: 6rem;
   font-weight: 900;
-  color: #d9480f;
+  // color: #d9480f;
+  color: $color-error;
 }
 
 .title {
   font-size: 4rem;
-  color: #333;
+  // color: #333;
+  color: $color-grey-dark-1;
 }
 
 .message {
   font-size: 2rem;
-  color: #333;
+  // color: #333;
+  color: $color-grey-dark-1;
 }

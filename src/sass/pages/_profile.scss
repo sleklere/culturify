@@ -22,9 +22,12 @@
       margin-top: -10rem;
       margin-left: 20rem;
       // border: 5px solid #fff;
-      box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-        rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      // box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+      //   rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      box-shadow: rgba($color-grey-dark-1, 0.2) 0px 1px 1px 0px inset,
+        rgba($color-grey-dark-1, 0.2) 0px 50px 100px -20px,
+        rgba($color-grey-dark-1, 0.3) 0px 30px 60px -30px;
     }
 
     &__details {
@@ -35,13 +38,15 @@
 
     &__name {
       font-size: 2.5rem;
-      color: #222;
+      // color: #222;
+      color: $color-grey-dark-1;
     }
 
     &__description {
       margin-top: 1rem;
       font-size: 1.6rem;
-      color: #444;
+      // color: #444;
+      color: $color-grey-dark-2;
     }
     &__social-links {
       margin-top: 2rem;
@@ -54,7 +59,8 @@
 .media-link {
   text-decoration: none;
   font-size: 1.6rem;
-  color: #444;
+  // color: #444;
+  color: $color-grey-dark-2;
   font-weight: 600;
   display: flex;
   align-items: center;

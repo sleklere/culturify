@@ -9,7 +9,11 @@ const userSlice = createSlice({
       // request to api, etc
 
       state.loggedIn = true;
-      state.data = action.payload;
+      state.data = action.payload.user;
+      localStorage.setItem("jwt", action.payload.token);
+      const expiration = new Date();
+      expiration.setMinutes(expiration.getMinutes() + 1);
+      localStorage.setItem("expiration", expiration.toISOString());
     },
     logout(state) {
       state.loggedIn = false;

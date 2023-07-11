@@ -8,7 +8,7 @@
 
   &:hover,
   &--active {
-    color: $main-color;
+    color: $color-primary;
   }
 
   &-img {
@@ -20,13 +20,14 @@
 }
 
 .nav-link {
-  color: #444;
+  // color: #444;
+  color: $color-grey-dark-2;
   text-decoration: none;
   transition: all 0.4s;
 
   &:hover,
   &:active,
   &--active {
-    color: $main-color;
+    color: $color-primary;
   }
 }

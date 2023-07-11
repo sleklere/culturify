@@ -8,8 +8,8 @@
   gap: 2rem;
   align-items: center;
   padding: 0 10rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  // border-bottom: 1px solid #bababa;
+  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba($color-grey-dark-1, 0.15) 0px 7px 29px 0px;
 
   &__brand-link {
     font-size: 2rem;
@@ -23,14 +23,6 @@
     align-items: center;
   }
 
-  &__link {
-    font-size: 2rem;
-    color: #444;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.4s;
-  }
-
   &__profile-link {
     font-size: 1.8rem;
     font-weight: 600;
@@ -41,7 +33,7 @@
 
     &:hover,
     &--active {
-      color: $main-color;
+      color: $color-primary;
     }
 
     // &--img {
@@ -84,6 +76,6 @@
     transition: all 0.3s;
     border-radius: 5px;
     color: #fff;
-    background-color: $main-color;
+    background-color: $color-primary;
   }
 }

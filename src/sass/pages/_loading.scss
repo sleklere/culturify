@@ -1,8 +1,11 @@
 .loading-container {
   width: 100vw;
   height: 100vh;
-  background-color: $main-color;
-  background-image: radial-gradient($main-color, darken($main-color-dark, 1));
+  background-color: $color-primary;
+  background-image: radial-gradient(
+    $color-primary,
+    darken($color-primary-dark, 1)
+  );
   z-index: 100;
 }
 

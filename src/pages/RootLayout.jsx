@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Components/Header";
 import MobileNav from "../Components/MobileNav";
+import AuthVerify from "../Components/AuthVerify";
 
 const overlays = document.getElementById("overlays");
 
@@ -18,14 +19,15 @@ function RootLayout() {
 
   return (
     <Fragment>
-      {mobileNavVisible &&
-        ReactDOM.createPortal(
-          <MobileNav onNavClose={closeMobileNav} />,
-          overlays
-        )}
-      <Header onMenuClick={showMobileNav} />
-      {/* {navigation.state === 'loading' && <p>Loading...</p>} */}
-      <Outlet />
+      <AuthVerify>
+        {mobileNavVisible &&
+          ReactDOM.createPortal(
+            <MobileNav onNavClose={closeMobileNav} />,
+            overlays
+          )}
+        <Header onMenuClick={showMobileNav} />
+        <Outlet />
+      </AuthVerify>
     </Fragment>
   );
 }

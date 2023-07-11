@@ -3,20 +3,20 @@
   min-height: 15rem;
   /* width: 60rem; */
   /* margin: 0 auto; */
-  padding: 2rem 4rem;
+  padding: 1rem 4rem;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 2rem;
-  /* border-top: 1px solid #222; */
-  border-bottom: 1px solid #b5b5b5;
+  border-bottom: 1px solid $color-grey-light-3;
 
   &__content {
     p {
       font-size: 1.6rem;
-      color: #444;
+      // color: #444;
+      color: $color-grey-dark-2;
     }
   }
 }
@@ -29,13 +29,15 @@
   gap: 1rem;
 
   &-icon {
-    color: #666;
+    // color: #666;
+    color: $color-grey-dark-2;
     height: 2rem;
     width: 2rem;
     transition: all 0.3s;
 
     &:hover {
-      color: #ffa000;
+      // color: #ffa000;
+      color: $color-tertiary;
       cursor: pointer;
     }
   }

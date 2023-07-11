@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userActions } from "../store/user-slice";
 import ProfileLink from "./ProfileLink";
+import axios from "axios";
 
 function Header(props) {
   // Use Redux for app-wide state 'userLoggedIn'
@@ -13,7 +14,18 @@ function Header(props) {
   // console.log(`userLogged is: ${userLogged}`);
   const user = useSelector((state) => state.user.data);
 
-  function logoutHandler() {
+  async function logoutHandler() {
+    try {
+      const res = await axios({
+        method: "GET",
+        url: "http://localhost:5000/api/v1/users/logout",
+        // withCredentials: true,
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+
     dispatch(userActions.logout());
     navigate("/");
   }
