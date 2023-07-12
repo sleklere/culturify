@@ -18,7 +18,7 @@ function ErrorPage() {
     message = error.data.message;
   }
 
-  if (error.data?.status === 404) {
+  if (error.data?.status === 404 || error.status === 404) {
     title = "Not found";
     message = "No page or resource was found";
   }
@@ -45,7 +45,7 @@ function ErrorPage() {
         )}
       <Header onMenuClick={showMobileNav} />
       <main className={"error-main"}>
-        <h1 className={"status"}>{error.data?.status}</h1>
+        <h1 className={"status"}>{error.status}</h1>
         <h1 className={"title"}>{title}</h1>
         <p className={"message"}>{message}</p>
       </main>

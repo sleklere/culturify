@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Components/Header";
 import MobileNav from "../Components/MobileNav";
-import AuthVerify from "../Components/AuthVerify";
+import AuthVerify from "../Components/Utils/AuthVerify";
 
 const overlays = document.getElementById("overlays");
 

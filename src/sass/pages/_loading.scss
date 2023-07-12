@@ -1,20 +1,27 @@
 .loading-container {
-  width: 100vw;
-  height: 100vh;
-  background-color: $color-primary;
-  background-image: radial-gradient(
-    $color-primary,
-    darken($color-primary-dark, 1)
-  );
-  z-index: 100;
+  // width: 100vw;
+  // height: 100vh;
+  width: 100%;
+  height: 100%;
+  // background-color: $color-primary;
+  // background-image: radial-gradient(
+  //   $color-primary,
+  //   darken($color-primary-dark, 1)
+  // );
+  // z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .spinner {
-  color: #fff;
-  position: absolute;
   font-size: 4rem;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  color: #fff;
+  // color: $color-primary;
+  margin-top: 10rem;
+  // position: absolute;
+  // left: 50%;
+  // top: 50%;
+  // transform: translate(-50%, -50%);
   animation: rotateSpinner 1s infinite;
 }

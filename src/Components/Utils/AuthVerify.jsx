@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { redirect, useNavigate, useSubmit } from "react-router-dom";
-import { userActions } from "../store/user-slice";
+import { useNavigate, useSubmit } from "react-router-dom";
+import { userActions } from "../../store/user-slice";
 
 export function getTokenDuration() {
   const expirationDate = new Date(localStorage.getItem("expiration"));
@@ -29,14 +29,6 @@ export function getAuthToken() {
   return token;
 }
 
-export function checkAuth() {
-  console.log("check auth");
-  const token = getAuthToken();
-  if (!token) {
-    return redirect("/login");
-  }
-}
-
 function AuthVerify({ children }) {
   const submit = useSubmit();
   const navigate = useNavigate();
@@ -50,19 +42,18 @@ function AuthVerify({ children }) {
     if (token === "EXPIRED") {
       axios({
         method: "GET",
-        url: "http://localhost:5000/api/v1/users/logout",
+        url: `${process.env.REACT_APP_API_URL}/users/logout`,
       })
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     }
 
     const tokenDuration = getTokenDuration();
-    console.log(tokenDuration);
 
     setTimeout(() => {
       axios({
         method: "GET",
-        url: "http://localhost:5000/api/v1/users/logout",
+        url: `${process.env.REACT_APP_API_URL}/users/logout`,
       })
         .then((res) => console.log(res))
         .catch((err) => console.log(err));

@@ -162,6 +162,10 @@
   }
 }
 
+.btn-spinner {
+  animation: rotateSpinner 1s infinite;
+}
+
 .google-auth {
   display: flex;
   flex-wrap: wrap;

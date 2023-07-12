@@ -11,15 +11,13 @@ function Header(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userLogged = useSelector((state) => state.user.loggedIn);
-  // console.log(`userLogged is: ${userLogged}`);
   const user = useSelector((state) => state.user.data);
 
   async function logoutHandler() {
     try {
       const res = await axios({
         method: "GET",
-        url: "http://localhost:5000/api/v1/users/logout",
-        // withCredentials: true,
+        url: `${process.env.REACT_APP_API_URL}/users/logout`,
       });
       console.log(res);
     } catch (err) {
@@ -27,7 +25,7 @@ function Header(props) {
     }
 
     dispatch(userActions.logout());
-    navigate("/");
+    navigate("/login");
   }
 
   return (
@@ -47,21 +45,10 @@ function Header(props) {
           </NavLink>
         )}
         {userLogged && (
-          // <NavLink
-          //   to={"/profile"}
-          //   className={({ isActive }) =>
-          //     `profile__link header__link ${
-          //       isActive ? "profile-link--active" : undefined
-          //     }`
-          //   }
-          // >
-          //   <div className="header__profile-link-img"></div>
-          //   Profile
-          // </NavLink>
           <ProfileLink
             linkTo={user._id}
             name={user.firstName}
-            img={"user_default.png"}
+            img={user.photo}
           />
         )}
         {userLogged && (

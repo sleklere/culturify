@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-function useInput(validateFn) {
+function useInputValidation(validateFn) {
   const [enteredValue, setEnteredValue] = useState("");
   const [touched, setTouched] = useState(false);
 
   const changeHandler = function (event) {
     setEnteredValue(event.target.value);
+    setTouched(true);
+  };
+  const blurHandler = function () {
     setTouched(true);
   };
   const reset = function () {
@@ -25,8 +28,9 @@ function useInput(validateFn) {
     hasError,
     isValid,
     changeHandler,
+    blurHandler,
     reset,
   };
 }
 
-export default useInput;
+export default useInputValidation;

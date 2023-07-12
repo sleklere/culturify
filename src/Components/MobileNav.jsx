@@ -49,16 +49,6 @@ function MobileNav(props) {
             img={"user_default.png"}
             onClick={props.onNavClose}
           />
-          // <NavLink
-          //   to={"/profile"}
-          //   className={({ isActive }) =>
-          //     `profile-link nav-link ${isActive ? "active" : undefined}`
-          //   }
-          //   onClick={props.onNavClose}
-          // >
-          //   <div className="nav-profile-img"></div>
-          //   Profile
-          // </NavLink>
         )}
         {userLogged && (
           <button className="btn" onClick={logoutHandler}>

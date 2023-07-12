@@ -2,9 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/Error";
 import Home, { loader as postsLoader } from "./pages/Home";
 import Profile, { loader as userLoader } from "./pages/User/Profile";
-import { action as registerAction } from "./Components/User/RegisterForm";
 import RootLayout from "./pages/RootLayout";
-import UserAuthLayout from "./pages/User/UserAuthLayout";
+import UserAuthLayout, {
+  loader as authPagesLoader,
+} from "./pages/User/UserAuthLayout";
+import ProtectRoute from "./Components/Utils/ProtectRoute";
 
 const router = createBrowserRouter([
   {
@@ -14,17 +16,32 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
-        loader: postsLoader,
+        element: (
+          <ProtectRoute>
+            <Home />
+          </ProtectRoute>
+        ),
+        // loader: postsLoader,
       },
       {
         path: "register",
         element: <UserAuthLayout register={true} />,
-        action: registerAction,
+        loader: authPagesLoader,
       },
-      { path: "login", element: <UserAuthLayout login={true} /> },
-      { path: "profile", element: <Profile /> },
-      { path: "users/:userId", element: <Profile />, loader: userLoader },
+      {
+        path: "login",
+        element: <UserAuthLayout login={true} />,
+        loader: authPagesLoader,
+      },
+      {
+        path: "users/:userId",
+        element: (
+          <ProtectRoute>
+            <Profile />
+          </ProtectRoute>
+        ),
+        loader: userLoader,
+      },
     ],
   },
 ]);

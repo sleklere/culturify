@@ -2,30 +2,35 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { userActions } from "../../store/user-slice";
 import axios from "axios";
-import useInput from "../../Hooks/useInput";
+import validate from "../../Hooks/useInputValidation";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formServerError, setFormServerError] = useState("");
+  const [formIsSubmitting, setFormIsSubmitting] = useState(false);
 
   const {
     value: email,
     classes: emailClasses,
     isValid: emailValid,
     changeHandler: emailChangeHandler,
+    blurHandler: emailBlurHandler,
     hasError: emailError,
     reset: resetEmail,
-  } = useInput((value) => value.includes("@"));
+  } = validate((value) => value.includes("@"));
   const {
     value: password,
     classes: passwordClasses,
     isValid: passwordValid,
     changeHandler: passwordChangeHandler,
+    blurHandler: passwordBlurHandler,
     hasError: passwordError,
     reset: resetPassword,
-  } = useInput((value) => value.trim() !== "");
+  } = validate((value) => value.trim() !== "");
 
   let formIsValid = false;
 
@@ -35,14 +40,17 @@ function LoginForm() {
 
   async function loginHandler(e) {
     e.preventDefault();
-    if (!formIsValid) return;
+    setFormIsSubmitting(true);
+    if (!formIsValid) {
+      setFormIsSubmitting(false);
+      return;
+    }
 
     try {
       const res = await axios({
         method: "POST",
-        url: "http://localhost:5000/api/v1/users/login",
+        url: `${process.env.REACT_APP_API_URL}/users/login`,
         data: { email, password },
-        withCredentials: true,
       });
 
       console.log(res);
@@ -50,6 +58,7 @@ function LoginForm() {
 
       dispatch(userActions.login({ user, token: res.data.token }));
 
+      setFormIsSubmitting(false);
       resetEmail();
       resetPassword();
 
@@ -75,6 +84,7 @@ function LoginForm() {
             placeholder="Email"
             name="email"
             onChange={emailChangeHandler}
+            onBlur={emailBlurHandler}
             value={email}
           />
           {emailError && (
@@ -88,6 +98,7 @@ function LoginForm() {
             placeholder="Password"
             name="password"
             onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
             value={password}
           />
           {passwordError && (
@@ -95,7 +106,11 @@ function LoginForm() {
           )}
         </label>
         <button className={`btn auth-submit`} type="submit">
-          Login
+          {formIsSubmitting ? (
+            <FontAwesomeIcon icon={faSpinner} className="btn-spinner" />
+          ) : (
+            "Login"
+          )}
         </button>
       </form>
       <div className="lines-container">

@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { json, useLoaderData } from "react-router-dom";
+import { json, useLoaderData, useParams } from "react-router-dom";
 import axios from "axios";
-import Post from "../../Components/Post";
+import Feed from "../../Components/Feed";
 
 function Profile() {
-  const { user, posts } = useLoaderData();
+  const user = useLoaderData();
+  const { userId } = useParams();
 
   return (
     <div className="profile">
@@ -15,7 +16,8 @@ function Profile() {
           className="user__img"
           style={{
             backgroundImage: `url(${
-              process.env.PUBLIC_URL + `/${user.photo}`
+              process.env.PUBLIC_URL +
+              `/${user?.photo ? user.photo : "user_default.png"}`
             })`,
           }}
         ></div>
@@ -50,43 +52,34 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className={"posts"}>
-        {posts.map((post) => (
-          <Post post={post} key={post._id} />
-        ))}
-        <p className={"posts__end"}>End of feed.</p>
+      <div className="profile__sub-container">
+        <div className="profile__options"></div>
+        <Feed endpoint={`/users/${userId}/posts`} />
       </div>
     </div>
   );
 }
 
 export async function loader({ request, params }) {
-  const apiUrl = "http://localhost:5000/api/v1";
   const token = localStorage.getItem("jwt");
-  const [userResponse, postsResponse] = await Promise.all([
-    axios(`${apiUrl}/users/${params.userId}`, {
-      method: "get",
-      withCredentials: true,
-      headers: { Authorization: `Bearer ${token}` },
-    }),
-    axios(`${apiUrl}/users/${params.userId}/posts`, {
-      method: "get",
-      withCredentials: true,
-      headers: { Authorization: `Bearer ${token}` },
-    }),
-  ]);
 
-  if (userResponse.status !== 200 || postsResponse.status !== 200) {
+  const res = await axios(
+    `${process.env.REACT_APP_API_URL}/users/${params.userId}`,
+    {
+      method: "get",
+      withCredentials: true,
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+
+  if (res.status !== 200) {
     throw json({
       message: "Could not fetch requested user information",
       status: 500,
     });
   } else {
-    // return response
-    return {
-      user: userResponse.data.data.user,
-      posts: postsResponse.data.data.posts,
-    };
+    const user = res.data.data.user;
+    return user;
   }
 }
 
