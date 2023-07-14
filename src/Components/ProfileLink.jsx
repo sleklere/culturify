@@ -5,7 +5,7 @@ function ProfileLink(props) {
     <NavLink
       to={`/users/${props.linkTo}`}
       className={({ isActive }) =>
-        `profile__link nav-link ${
+        `${props.classes} profile__link nav-link ${
           isActive ? "profile-link--active" : undefined
         }`
       }

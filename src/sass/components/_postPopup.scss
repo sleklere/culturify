@@ -1,0 +1,66 @@
+.post-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60rem;
+  width: 80rem;
+
+  // background-color: $color-grey-dark-3;
+  background-image: radial-gradient(
+    rgba(247, 247, 247, 0.9),
+    rgba(223, 223, 223, 0.9)
+  );
+  background-image: radial-gradient(
+    darken(rgba($color-grey-light-4, 0.9), 1),
+    darken(rgba($color-grey-light-3, 0.9), 1)
+  );
+  background-image: radial-gradient(
+    rgba(235, 235, 235, 0.9),
+    rgba(204, 204, 204, 0.9)
+  );
+  padding: 2rem 4rem;
+  border-radius: 1rem;
+
+  &-bg {
+    background-color: rgba(#000, 0.3);
+    backdrop-filter: blur(5px);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+  }
+
+  .profile__link {
+    font-size: 2.4rem;
+    display: inline-flex;
+    gap: 1rem;
+
+    &-img {
+      height: 5rem;
+      width: 5rem;
+    }
+    // display: inline-block;
+    // background-color: red;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: $color-grey-dark-3;
+    cursor: pointer;
+  }
+
+  &__post-content {
+    margin-top: 4rem;
+    font-size: 2rem;
+    color: $color-grey-dark-1;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Loading from "../pages/Loading";
+import Loading from "./Loading";
 import Post from "./Post";
 
 function Feed(props) {
@@ -25,14 +25,16 @@ function Feed(props) {
   }, [props.endpoint, token]);
 
   return (
-    <div className={"posts"}>
-      {postsLoading ? (
-        <Loading />
-      ) : (
-        posts.map((post) => <Post post={post} key={post._id} />)
-      )}
-      <p className={"posts__end"}>End of feed.</p>
-    </div>
+    <>
+      <div className={"posts"}>
+        {postsLoading ? (
+          <Loading />
+        ) : (
+          posts.map((post) => <Post post={post} key={post._id} />)
+        )}
+        <p className={"posts__end"}>End of feed.</p>
+      </div>
+    </>
   );
 }
 

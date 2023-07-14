@@ -1,62 +1,43 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFireAlt } from "@fortawesome/free-solid-svg-icons";
-import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
+import ReactDOM from "react-dom";
 import ProfileLink from "./ProfileLink";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { getAuthToken } from "./Utils/AuthVerify";
 import { useState } from "react";
+import PostActions from "./PostActions";
+import PostPopup from "./PostPopup";
+import { useLocation, useNavigate } from "react-router-dom";
+
+const overlays = document.getElementById("overlays");
 
 function Post(props) {
   const { post } = props;
-  const user = useSelector((state) => state.user.data);
-  const token = getAuthToken();
-  const [postLikes, setPostLikes] = useState(post.numLikes);
+  const [postPopupVisible, setPostPopupVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  async function likePost() {
-    setPostLikes((prevState) => prevState + 1);
-    try {
-      await axios(`${process.env.REACT_APP_API_URL}/posts/${post._id}/like`, {
-        method: "POST",
-        data: { user, post: post._id },
-        withCredentials: true,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      console.log("Post liked successfully!");
-    } catch (err) {
-      setPostLikes((prevState) => prevState - 1);
-      console.log(err);
-    }
-  }
+  // const openPost = () => setPostPopupVisible(true);
+  const goToPost = () => {
+    navigate(`${location.pathname}/posts/${post._id}`);
+  };
+  const closePost = () => setPostPopupVisible(false);
 
   return (
-    <div className={"post"}>
-      <ProfileLink
-        linkTo={post.user._id}
-        name={post.user.firstName}
-        img={post.user.photo ? post.user.photo : "user_default.png"}
-      />
-      <div className="post__content">
-        <p>{post.text}</p>
-      </div>
-      <div className={"post__actions"}>
-        <div className="post__action">
-          <FontAwesomeIcon
-            icon={faFireAlt}
-            className="post__actions-icon"
-            onClick={likePost}
-          />
-          {postLikes}
+    <>
+      {/* {postPopupVisible &&
+        ReactDOM.createPortal(
+          <PostPopup post={post} id={post._id} closePopup={closePost} />,
+          overlays
+        )} */}
+      <div className={"post"} onClick={goToPost}>
+        <ProfileLink
+          linkTo={post.user._id}
+          name={post.user.firstName}
+          img={post.user.photo ? post.user.photo : "user_default.png"}
+        />
+        <div className="post__content">
+          <p>{post.text}</p>
         </div>
-        <div className="post__action">
-          <FontAwesomeIcon
-            icon={faCommentDots}
-            className="post__actions-icon"
-          />
-          {post.numComments}
-        </div>
+        <PostActions post={post} />
       </div>
-    </div>
+    </>
   );
 }
 
