@@ -39,6 +39,8 @@
     display: flex;
     justify-content: center;
     gap: 1.5rem;
+    // border-bottom: 1px solid $color-grey-light-4;
+    // padding-bottom: 2rem;
 
     &-icon {
       // color: #666;
@@ -62,6 +64,34 @@
     justify-content: center;
     gap: 0.3rem;
     color: $color-grey-dark-2;
+  }
+
+  &__comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.6rem;
+    background-color: $color-grey-light-2;
+    color: $color-grey-dark-2;
+    padding: 1.5rem 2.5rem;
+    border-radius: 0.5rem;
+
+    .profile__link {
+      font-size: 1.8rem !important;
+      gap: 0.5rem !important;
+
+      &-img {
+        width: 4rem !important;
+        height: 4rem !important;
+      }
+    }
+
+    &-text {
+      margin-top: 0.5rem;
+      padding: 0 1rem;
+    }
   }
 }
 

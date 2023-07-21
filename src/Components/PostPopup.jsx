@@ -11,31 +11,35 @@ function PostPopup() {
   const postId = useLoaderData();
   const [postLoading, setPostLoading] = useState(true);
   const [post, setPost] = useState("");
+  const [reRender, setReRender] = useState(false);
   const navigate = useNavigate();
-  console.log(postId);
-  console.log(post);
   const token = localStorage.getItem("jwt");
 
   useEffect(() => {
-    async function fetchPosts() {
+    async function fetchPost() {
       return await axios(process.env.REACT_APP_API_URL + `/posts/${postId}`, {
         method: "get",
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       });
     }
-    fetchPosts()
+    fetchPost()
       .then((res) => {
         setPost(res.data.data.post);
         setPostLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [postId, token]);
+  }, [postId, token, reRender]);
 
   function closePopup() {
     // temporary solution
     // doesnt work if theres no previous page, plus you cant go back to the post again from the browser button
     navigate(-1);
+  }
+
+  function toggleReRender() {
+    // console.log("re render handler");
+    setReRender((prevState) => !prevState);
   }
 
   return (
@@ -50,7 +54,6 @@ function PostPopup() {
               linkTo={post.user._id}
               name={post.user.firstName}
               img={post.user.photo ? post.user.photo : "user_default.png"}
-              // classes="post-popup__profile-link"
             />
             <FontAwesomeIcon
               icon={faClose}
@@ -58,15 +61,23 @@ function PostPopup() {
               onClick={closePopup}
             />
             <div className="post-popup__post-content">
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Blanditiis esse eius quas nemo repudiandae fugiat nostrum
-                ratione officiis a, itaque vero voluptatum debitis incidunt
-                excepturi beatae reiciendis. Quasi, mollitia. Molestiae.
-              </p>
-              <PostActions post={post} />
+              <p>{post.text}</p>
+              <PostActions post={post} reRenderParent={toggleReRender} />
             </div>
-            <div>Comments</div>
+            {post.numComments > 0 && (
+              <div className="post-popup__comments">
+                {post.comments.map((comment) => (
+                  <div className="post__comment" key={comment._id}>
+                    <ProfileLink
+                      linkTo={comment.user._id}
+                      name={comment.user.firstName}
+                      img={comment.user.photo}
+                    />
+                    <p className="post__comment-text">{comment.text}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </>
         )}
       </div>
@@ -74,9 +85,7 @@ function PostPopup() {
   );
 }
 
-export function loader({ request, params }) {
-  console.log("post popup loader");
-  console.log(params);
+export function loader({ params }) {
   return params.postId;
 }
 

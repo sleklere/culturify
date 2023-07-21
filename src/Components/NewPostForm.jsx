@@ -17,7 +17,6 @@ function NewPostForm() {
   if (textValid) formIsValid = true;
 
   async function newPostHandler(e) {
-    console.log("new post handler");
     e.preventDefault();
     if (!formIsValid || !user) {
       resetText();

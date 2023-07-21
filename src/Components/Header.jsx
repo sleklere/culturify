@@ -19,7 +19,6 @@ function Header(props) {
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/users/logout`,
       });
-      console.log(res);
     } catch (err) {
       console.log(err);
     }

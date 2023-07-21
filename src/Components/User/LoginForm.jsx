@@ -64,8 +64,7 @@ function LoginForm() {
 
       navigate("/");
     } catch (err) {
-      // console.log(err);
-      // console.log(err.response.data.message);
+      console.log(err);
       setFormServerError(err.response.data.message);
     }
   }
