@@ -4,7 +4,7 @@
   width: 100vw;
   /* background-color: rgba(103, 103, 103, 0.948); */
   background-color: $color-primary;
-  z-index: 100;
+  z-index: $z-mob-nav;
   animation: fade-in 0.3s ease-in forwards;
 
   &__close {
@@ -34,7 +34,7 @@
   &__link {
     width: 100%;
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 2.4rem;
     list-style: none;
     padding: 2rem 0;
     border-bottom: 1px solid #fff;

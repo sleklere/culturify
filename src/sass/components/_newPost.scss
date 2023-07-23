@@ -1,20 +1,12 @@
 .new-post {
-  // height: 20rem;
-  // background-color: #333;
-  // background-color: $color-grey-light-2;
-  // padding: 2rem 0;
-
   width: 60rem;
-  max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1.6rem;
-  border-radius: 5px;
-  // border: 1px solid white;
+  font-size: $fs-small;
+  margin: 0 auto;
+  margin-bottom: $m2;
 
   @media (max-width: 768px) {
     max-width: 95vw;
@@ -25,7 +17,7 @@
   h2 {
     color: $color-grey-dark-2;
     font-weight: 400;
-    font-size: 2rem;
+    font-size: $fs-large;
     padding: 1rem;
     background: linear-gradient(
       to right bottom,
@@ -35,22 +27,14 @@
   }
 
   form {
-    overflow: hidden;
     width: 100%;
-    margin-bottom: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 0 1rem rgba($color-grey-dark-1, 0.2);
-    // padding-bottom: 1rem;
-
-    // background: linear-gradient(
-    //   to right bottom,
-    //   lighten(rgba($color-primary-light, 0.8), 8),
-    //   lighten(rgba($color-secondary, 0.8), 8)
-    // );
-    background-color: #fff;
-
     display: flex;
     flex-direction: column;
+    border-radius: $br-small;
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: $m2;
+    box-shadow: 0 0 1rem rgba($color-grey-dark-1, 0.2);
   }
   &__content {
     font-size: inherit;
@@ -67,7 +51,7 @@
 
   &__button {
     align-self: flex-end;
-    margin-bottom: 1rem;
+    margin-bottom: $m2;
     margin-right: 1rem;
     border-radius: 0;
     border-bottom-right-radius: 1rem;

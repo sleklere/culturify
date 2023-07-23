@@ -6,17 +6,17 @@
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(
-    to right bottom,
-    lighten($color-primary, 5),
-    lighten($color-primary-dark, 5)
-  );
+  // background-image: linear-gradient(
+  //   to right bottom,
+  //   lighten($color-primary, 5),
+  //   lighten($color-primary-dark, 5)
+  // );
   background: linear-gradient(
     to right bottom,
     rgba($color-primary-light, 0.8),
     rgba($color-secondary, 0.8)
   );
-  z-index: 100;
+  z-index: $z-loading-page;
   font-size: 4rem;
   color: #fff;
 

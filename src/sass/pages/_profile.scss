@@ -11,6 +11,13 @@
     display: flex;
     gap: 5rem;
 
+    @media only screen and (max-width: $bp-mobile) {
+      flex-direction: column;
+      align-items: center;
+      // align-items: flex-start;
+      gap: 0;
+    }
+
     &__img {
       height: 22rem;
       width: 22rem;
@@ -20,36 +27,43 @@
       background-size: cover;
       border-radius: 100%;
       margin-top: -10rem;
-      margin-left: 10%;
-      // border: 5px solid #fff;
-      // box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-      //   rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-      //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      margin-left: $side-margin-pc;
       box-shadow: rgba($color-grey-dark-1, 0.2) 0px 1px 1px 0px inset,
         rgba($color-grey-dark-1, 0.2) 0px 50px 100px -20px,
         rgba($color-grey-dark-1, 0.3) 0px 30px 60px -30px;
+
+      @media only screen and (max-width: $bp-mobile) {
+        height: 15rem;
+        width: 15rem;
+        // max-width: 15rem;
+        margin-left: 0;
+      }
     }
 
     &__details {
-      /* width: 100% - var(.profile-img).profile-img; */
       width: 50%;
-      margin-top: 2rem;
+      margin-top: $m3;
+
+      @media only screen and (max-width: $bp-mobile) {
+        // padding-left: $side-padding-mb;
+        // margin-left: $side-margin-mb;
+        width: unset;
+        text-align: center;
+      }
     }
 
     &__name {
-      font-size: 2.5rem;
-      // color: #222;
+      font-size: 2.4rem;
       color: $color-grey-dark-1;
     }
 
     &__description {
-      margin-top: 1rem;
+      margin-top: $m2;
       font-size: 1.6rem;
-      // color: #444;
       color: $color-grey-dark-2;
     }
     &__social-links {
-      margin-top: 2rem;
+      margin-top: $m3;
       display: flex;
       gap: 2rem;
     }
@@ -57,26 +71,26 @@
 
   &__sub-container {
     display: flex;
-    // align-items: center;
-    padding: 0 10%;
+    padding: 0 $side-padding-pc;
     gap: 5rem;
-    margin-top: 5rem;
+    margin-top: $m4;
   }
 
   &__options {
-    // flex: 0 0 25%;
     background-color: $color-grey-dark-3;
     height: 100%;
-    width: 22rem;
-    // width: 10rem;
+    min-width: 22rem;
     height: 20rem;
     border-radius: 0.5rem;
+
+    @media only screen and (max-width: $bp-mobile) {
+      display: none;
+    }
   }
 
   .posts {
-    flex: 0 0 50%;
+    // flex: 0 0 50%;
     margin: 0;
-    // flex: 1;
   }
 }
 

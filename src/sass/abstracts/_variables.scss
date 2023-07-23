@@ -1,3 +1,4 @@
+// COLOR
 // Testing
 // $color-primary-light: #e16d3f;
 // $color-primary: #d9480f;
@@ -25,6 +26,51 @@ $color-grey-dark-1: #333;
 $color-grey-dark-2: #666;
 $color-grey-dark-3: #999;
 
+// APP CUSTOMIZATION
 $header-height: 8rem;
 
+// TRANSITIONS
 $transition-short: all 0.3s;
+
+// TYPOGRAPHY
+// FAMILIES
+$font-family-main: "Nunito", sans-serif;
+$font-family-secondary: "Montserrat", sans-serif;
+
+// SIZES
+$fs-smallest: 1.4rem;
+$fs-small: 1.6rem;
+$fs-medium: 1.8rem;
+$fs-large: 2rem;
+$fs-largest: 2.4rem;
+
+// BORDER RADIUS
+$br-small: 0.5rem;
+$br-medium: 1rem;
+
+// SPACING
+$m1: 0.5rem;
+$m2: 1rem;
+$m3: 2rem;
+$m4: 4rem;
+
+$p1: 1rem;
+$p2: 1rem;
+$p3: 1rem;
+$p4: 1rem;
+
+$side-padding-mb: 5%;
+$side-padding-pc: 10%;
+
+$side-margin-mb: 5%;
+$side-margin-pc: 10%;
+
+// Z-INDEX
+$z-mob-nav: 10;
+$z-auth-form: 5;
+$z-loading-page: 100;
+
+// MEDIA QUERIES BREAKPOINTS
+$bp-desktop: 75em; // 1200px
+$bp-tablet: 64em; // 1024px
+$bp-mobile: 48em; // 768px

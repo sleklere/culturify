@@ -1,24 +1,3 @@
-.profile__link {
-  font-size: 1.8rem;
-  font-weight: 600;
-  display: flex;
-  // justify-content: center;
-  align-items: center;
-  gap: 5px;
-
-  &:hover,
-  &--active {
-    color: $color-primary;
-  }
-
-  &-img {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 20px;
-    background-size: cover;
-  }
-}
-
 .nav-link {
   // color: #444;
   color: $color-grey-dark-2;

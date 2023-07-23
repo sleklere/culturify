@@ -60,12 +60,12 @@ function PostPopup() {
               className="post-popup__close"
               onClick={closePopup}
             />
-            <div className="post-popup__post-content">
+            <div className="post-popup__post">
               <p>{post.text}</p>
               <PostActions post={post} reRenderParent={toggleReRender} />
             </div>
             {post.numComments > 0 && (
-              <div className="post-popup__comments">
+              <div className="post__comments">
                 {post.comments.map((comment) => (
                   <div className="post__comment" key={comment._id}>
                     <ProfileLink
