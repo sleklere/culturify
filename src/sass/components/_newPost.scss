@@ -1,5 +1,5 @@
 .new-post {
-  width: 60rem;
+  width: 50rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,9 +9,9 @@
   margin-bottom: $m2;
 
   @media (max-width: 768px) {
-    max-width: 95vw;
-    margin-left: auto;
-    margin-right: auto;
+    width: unset;
+    max-width: 50rem;
+    padding: 0 $side-padding-mb;
   }
 
   h2 {

@@ -14,8 +14,10 @@ function PostPopup() {
   const [reRender, setReRender] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
+  console.log("Post Popup Component");
 
   useEffect(() => {
+    if (post !== "") return;
     async function fetchPost() {
       return await axios(process.env.REACT_APP_API_URL + `/posts/${postId}`, {
         method: "get",
@@ -23,13 +25,14 @@ function PostPopup() {
         headers: { Authorization: `Bearer ${token}` },
       });
     }
+    console.log("Fetching post...");
     fetchPost()
       .then((res) => {
         setPost(res.data.data.post);
         setPostLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [postId, token, reRender]);
+  }, [postId, token, reRender, post]);
 
   function closePopup() {
     // temporary solution

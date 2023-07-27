@@ -1,8 +1,12 @@
 .posts {
   margin: 0 auto;
-  width: 60rem;
-  max-width: 100%;
+  max-width: 50rem;
+  // max-width: 100%;
   min-height: calc(100vh - $header-height);
+
+  @media only screen and (max-width: $bp-mobile) {
+    padding: 0 $side-padding-mb;
+  }
 
   &__end {
     margin-top: $m4;

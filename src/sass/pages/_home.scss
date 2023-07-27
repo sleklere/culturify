@@ -1,9 +1,21 @@
 .main {
   /* background-color: #cecece; */
   // background-color: #bdbdbd;
-  background: radial-gradient(
-    rgba($color-primary-light, 0.6),
-    rgba($color-secondary, 0.6)
+  // background: radial-gradient(
+  //   rgba($color-primary-light, 0.6),
+  //   rgba($color-secondary, 0.6)
+  // );
+  // background: radial-gradient(rgb(178 178 178 / 60%), rgb(229 229 229 / 60%));
+  background: linear-gradient(
+    to right bottom,
+    rgba(#4a7670, 0.9),
+    rgba(#53978e, 0.9)
   );
+  background: linear-gradient(
+    to right bottom,
+    rgba(#629c94, 0.9),
+    rgba(#63c2b5, 0.9)
+  );
+  // background-color: #4a7670;
   padding-top: 2rem;
 }

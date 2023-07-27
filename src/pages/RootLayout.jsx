@@ -10,11 +10,11 @@ const overlays = document.getElementById("overlays");
 function RootLayout() {
   const [mobileNavVisible, setMobileNavVisible] = useState(false);
 
-  function showMobileNav() {
-    setMobileNavVisible(true);
-  }
   function closeMobileNav() {
     setMobileNavVisible(false);
+  }
+  function toggleMobileNav() {
+    setMobileNavVisible((prevState) => !prevState);
   }
 
   return (
@@ -25,7 +25,7 @@ function RootLayout() {
             <MobileNav onNavClose={closeMobileNav} />,
             overlays
           )}
-        <Header onMenuClick={showMobileNav} />
+        <Header onMenuClick={toggleMobileNav} isNavOpen={mobileNavVisible} />
         <Outlet />
       </AuthVerify>
     </Fragment>

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userActions } from "../store/user-slice";
+import { Squash as Hamburger } from "hamburger-react";
 import ProfileLink from "./ProfileLink";
 import axios from "axios";
 
@@ -15,7 +16,7 @@ function Header(props) {
 
   async function logoutHandler() {
     try {
-      const res = await axios({
+      await axios({
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/users/logout`,
       });
@@ -56,9 +57,16 @@ function Header(props) {
           </button>
         )}
       </nav>
-      <button className="burger-menu" onClick={props.onMenuClick}>
-        <FontAwesomeIcon icon={faBars} />
-      </button>
+      <div className="burger-menu" onClick={props.onMenuClick}>
+        {/* <FontAwesomeIcon icon={faBars} /> */}
+        <Hamburger
+          toggled={props.isNavOpen}
+          size={32}
+          color="#444"
+          hideOutline={true}
+          rounded
+        />
+      </div>
     </header>
   );
 }

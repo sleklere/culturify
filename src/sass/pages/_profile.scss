@@ -74,6 +74,10 @@
     padding: 0 $side-padding-pc;
     gap: 5rem;
     margin-top: $m4;
+
+    @media only screen and (max-width: $bp-mobile) {
+      padding: 0;
+    }
   }
 
   &__options {

@@ -1,11 +1,27 @@
 .mobile-nav {
   position: fixed;
   height: 100vh;
-  width: 100vw;
+  // calculate the width to leave space for the open/close button, taking into account size and spacing
+  width: calc(100vw - 48px - 4rem);
   /* background-color: rgba(103, 103, 103, 0.948); */
-  background-color: $color-primary;
+  // background-color: $color-primary;
+  background-image: linear-gradient(
+    to bottom,
+    rgba($color-grey-dark-2, 0.95),
+    rgba($color-grey-dark-3, 0.7)
+  );
+  backdrop-filter: blur(3px);
   z-index: $z-mob-nav;
   animation: fade-in 0.3s ease-in forwards;
+
+  &__bg {
+    position: fixed;
+    z-index: $z-mob-nav;
+    height: 100vh;
+    width: 100vw;
+    // backdrop-filter: blur(3px);
+    // background-color: rgba($color-grey-light-3, 0.5);
+  }
 
   &__close {
     position: absolute;
@@ -21,38 +37,47 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* gap: 2rem; */
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 3rem;
   }
 
-  &__link:first-child {
-    border-top: 1px solid #fff;
-  }
-
-  &__link {
-    width: 100%;
-    text-decoration: none;
-    font-size: 2.4rem;
+  &__links {
     list-style: none;
-    padding: 2rem 0;
-    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    font-size: $fs-large;
+    width: 100%;
+
+    padding-top: 2rem;
+    border-top: 1px solid white;
+  }
+
+  &__link,
+  &__link a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    text-decoration: none;
     color: #fff;
     text-decoration: none;
+    font-weight: 300;
+    font-size: inherit;
+  }
+
+  // icon
+  .MuiSvgIcon-fontSizeLarge {
+    font-size: $fs-largest;
   }
 }
-
-/* .link-item a {
-  text-decoration: none;
-  color: #fff;
-  text-decoration: none;
-} */
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
   to {
     opacity: 1;

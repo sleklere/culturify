@@ -10,6 +10,7 @@ function ProfileLink(props) {
         }`
       }
       onClick={props.onNavClose}
+      style={{ color: props.fontColor }}
     >
       <div
         className="profile__link-img"

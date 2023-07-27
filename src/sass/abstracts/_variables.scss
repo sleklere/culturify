@@ -11,8 +11,8 @@ $color-primary-dark: #00796b;
 $color-secondary: #018b9d;
 
 $color-tertiary: #ffa000;
-$color-tertiary: #ffbc6b;
-$color-tertiary: #e49170;
+// $color-tertiary: #ffbc6b;
+// $color-tertiary: #e49170;
 $color-error: #d9480f;
 // #b40e0e
 
@@ -26,6 +26,11 @@ $color-grey-dark-1: #333;
 $color-grey-dark-2: #666;
 $color-grey-dark-3: #999;
 
+// Slight hue towards primary color
+// $color-grey-dark-1: #263533;
+// $color-grey-dark-2: #586362;
+// $color-grey-dark-3: #819794;
+
 // APP CUSTOMIZATION
 $header-height: 8rem;
 
@@ -34,7 +39,8 @@ $transition-short: all 0.3s;
 
 // TYPOGRAPHY
 // FAMILIES
-$font-family-main: "Nunito", sans-serif;
+// $font-family-main: "Nunito", sans-serif;
+$font-family-main: "Nunito Sans", sans-serif;
 $font-family-secondary: "Montserrat", sans-serif;
 
 // SIZES
@@ -59,7 +65,7 @@ $p2: 1rem;
 $p3: 1rem;
 $p4: 1rem;
 
-$side-padding-mb: 5%;
+$side-padding-mb: 2%;
 $side-padding-pc: 10%;
 
 $side-margin-mb: 5%;

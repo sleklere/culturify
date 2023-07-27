@@ -5,7 +5,7 @@
   height: $header-height;
   // background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px);
+  // backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
   gap: 2rem;
@@ -53,6 +53,8 @@
 
 .burger-menu {
   display: none;
+  display: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 1024px) {
@@ -72,13 +74,16 @@
   }
 
   .burger-menu {
+    // display: block;
+    // padding: 0.5rem 1rem;
+    // // font-size: 1.8rem;
+    // border: none;
+    // transition: all 0.3s;
+    // border-radius: $br-small;
+    // color: #fff;
+    // background-color: $color-primary;
     display: block;
-    padding: 1rem 2rem;
-    font-size: 1.8rem;
-    border: none;
-    transition: all 0.3s;
-    border-radius: $br-small;
-    color: #fff;
-    background-color: $color-primary;
+    position: relative;
+    z-index: 9999;
   }
 }
