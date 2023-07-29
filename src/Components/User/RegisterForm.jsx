@@ -6,8 +6,10 @@ import axios from "axios";
 import { userActions } from "../../store/user-slice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import useSetPageTitle from "../../Hooks/useSetPageTitle";
 
 function RegisterForm() {
+  useSetPageTitle("Register");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formServerError, setFormServerError] = useState("");

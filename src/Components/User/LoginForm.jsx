@@ -6,8 +6,10 @@ import validate from "../../Hooks/useInputValidation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import useSetPageTitle from "../../Hooks/useSetPageTitle";
 
 function LoginForm() {
+  useSetPageTitle("Login");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formServerError, setFormServerError] = useState("");

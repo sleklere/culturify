@@ -19,8 +19,8 @@ function UserAuthLayout(props) {
           }}
         ></div>
         <div className="form-side">
-          {props.register && <RegisterForm />}
-          {props.login && <LoginForm />}
+          {props.register && <RegisterForm title={"Register"} />}
+          {props.login && <LoginForm title={"Login"} />}
         </div>
       </main>
     </Fragment>
