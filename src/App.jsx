@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingPage />}>
             <ProtectRoute>
-              <Home />
+              <Home title={"Home"} />
             </ProtectRoute>
           </Suspense>
         ),

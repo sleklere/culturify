@@ -14,7 +14,7 @@ function PostPopup() {
   const [reRender, setReRender] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("jwt");
-  console.log("Post Popup Component");
+  // console.log("Post Popup Component");
 
   useEffect(() => {
     if (post !== "") return;
@@ -25,7 +25,7 @@ function PostPopup() {
         headers: { Authorization: `Bearer ${token}` },
       });
     }
-    console.log("Fetching post...");
+    // console.log("Fetching post...");
     fetchPost()
       .then((res) => {
         setPost(res.data.data.post);

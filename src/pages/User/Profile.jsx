@@ -3,10 +3,12 @@ import { faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Outlet, json, useLoaderData, useParams } from "react-router-dom";
 import axios from "axios";
 import Feed from "../../Components/Feed";
+import useSetPageTitle from "../../Hooks/useSetPageTitle";
 
 function Profile() {
   const user = useLoaderData();
   const { userId } = useParams();
+  useSetPageTitle(`${user.firstName} ${user.lastName}`);
 
   return (
     <>

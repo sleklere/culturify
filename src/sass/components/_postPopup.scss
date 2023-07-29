@@ -13,10 +13,6 @@
     darken(rgba($color-grey-light-4, 0.9), 1),
     darken(rgba($color-grey-light-3, 0.9), 1)
   );
-  // background-image: radial-gradient(
-  //   rgba(235, 235, 235, 0.9),
-  //   rgba(204, 204, 204, 0.9)
-  // );
 
   @media (max-width: 768px) {
     max-width: 95vw;

@@ -1,8 +1,10 @@
 import NewPostForm from "../Components/NewPostForm";
 import Feed from "../Components/Feed";
 import { Outlet } from "react-router-dom";
+import useSetPageTitle from "../Hooks/useSetPageTitle";
 
-function Home() {
+function Home(props) {
+  useSetPageTitle(props.title);
   return (
     <>
       <Outlet />

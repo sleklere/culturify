@@ -2,9 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userActions } from "../store/user-slice";
 import ProfileLink from "./ProfileLink";
-import LogoutIcon from "@mui/icons-material/Logout";
-import SettingsIcon from "@mui/icons-material/Settings";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import LoginIcon from "@mui/icons-material/Login";
+import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 function MobileNav(props) {
   const navigate = useNavigate();
@@ -14,7 +17,8 @@ function MobileNav(props) {
 
   function logoutHandler() {
     dispatch(userActions.logout());
-    navigate("/");
+    props.onNavClose();
+    navigate("/login");
   }
 
   return (
@@ -23,22 +27,29 @@ function MobileNav(props) {
       <div className="mobile-nav">
         <ul className="mobile-nav__list">
           {!userLogged && (
-            <NavLink
-              to={"/register"}
-              onClick={props.onNavClose}
-              className="mobile-nav__link"
-            >
-              Register
-            </NavLink>
-          )}
-          {!userLogged && (
-            <NavLink
-              to={"/login"}
-              onClick={props.onNavClose}
-              className="mobile-nav__link"
-            >
-              Login
-            </NavLink>
+            <>
+              <NavLink
+                to={`/`}
+                onClick={props.onNavClose}
+                className={"mobile-nav__brand-link"}
+              >
+                Culturify
+              </NavLink>
+              <ul className="mobile-nav__links">
+                <li className="mobile-nav__link">
+                  <NavLink to={"/register"} onClick={props.onNavClose}>
+                    <AppRegistrationIcon fontSize="large" />
+                    Register
+                  </NavLink>
+                </li>
+                <li className="mobile-nav__link">
+                  <NavLink to={"/login"} onClick={props.onNavClose}>
+                    <LoginIcon fontSize="large" />
+                    Login
+                  </NavLink>
+                </li>
+              </ul>
+            </>
           )}
           {userLogged && (
             <>
@@ -50,13 +61,19 @@ function MobileNav(props) {
               />
               <ul className="mobile-nav__links">
                 <li className="mobile-nav__link">
-                  <NavLink>
+                  <NavLink to={`/`} onClick={props.onNavClose}>
+                    <HomeIcon fontSize="large" />
+                    Home
+                  </NavLink>
+                </li>
+                <li className="mobile-nav__link">
+                  <NavLink to={`/users/${user._id}`} onClick={props.onNavClose}>
                     <AccountCircleIcon fontSize="large" />
                     Profile
                   </NavLink>
                 </li>
                 <li className="mobile-nav__link">
-                  <NavLink>
+                  <NavLink onClick={props.onNavClose}>
                     <SettingsIcon fontSize="large" />
                     Settings
                   </NavLink>
@@ -68,11 +85,6 @@ function MobileNav(props) {
               </ul>
             </>
           )}
-          {/* {userLogged && (
-            <button className="btn" onClick={logoutHandler}>
-              Logout
-            </button>
-          )} */}
         </ul>
       </div>
     </>

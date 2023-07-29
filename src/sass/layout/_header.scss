@@ -3,15 +3,13 @@
   top: 0;
   width: 100%;
   height: $header-height;
-  // background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
-  // backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-between;
   gap: 2rem;
   align-items: center;
   padding: 0 5%;
-  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   box-shadow: rgba($color-grey-dark-1, 0.15) 0px 7px 29px 0px;
 
   &__brand-link {
@@ -38,16 +36,6 @@
     &--active {
       color: $color-primary;
     }
-
-    // &--img {
-    //   /* border: 1px solid #000; */
-    //   height: 4rem;
-    //   width: 4rem;
-    //   border-radius: 20px;
-    //   background: url("https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80")
-    //     no-repeat center;
-    //   background-size: cover;
-    // }
   }
 }
 
@@ -74,14 +62,6 @@
   }
 
   .burger-menu {
-    // display: block;
-    // padding: 0.5rem 1rem;
-    // // font-size: 1.8rem;
-    // border: none;
-    // transition: all 0.3s;
-    // border-radius: $br-small;
-    // color: #fff;
-    // background-color: $color-primary;
     display: block;
     position: relative;
     z-index: 9999;

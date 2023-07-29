@@ -23,7 +23,6 @@
 
   @media (max-width: 768px) {
     max-width: 50rem;
-    // max-width: 95vw;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem 2rem;
@@ -34,8 +33,6 @@
   }
 
   &__content {
-    // font-size: 1.6rem;
-    // font-size: inherit;
     p {
       color: $color-grey-dark-2;
     }
@@ -58,12 +55,14 @@
         color: $color-tertiary;
         cursor: pointer;
       }
+
+      &--liked {
+        color: $color-tertiary;
+      }
     }
   }
   &__action {
     font-weight: 600;
-    // font-size: 1.6rem;
-    // font-size: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
