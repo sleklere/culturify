@@ -5,6 +5,7 @@ import { getAuthToken } from "./Utils/AuthVerify";
 import { useSelector } from "react-redux";
 import validate from "../Hooks/useInputValidation";
 import axios from "axios";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 function PostActions(props) {
   const { post } = props;
@@ -142,7 +143,7 @@ function PostActions(props) {
       ).then((res) => console.log(res));
       resetText();
       // console.log("Post commented successfully!");
-      props.reRenderParent();
+      props.reloadPost();
     } catch (err) {
       setPostComments((prevState) => prevState - 1);
       console.log(err);
@@ -153,8 +154,15 @@ function PostActions(props) {
     <>
       <div className={"post__actions"}>
         <div className="post__action">
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faFireAlt}
+            className={`post__actions-icon ${
+              postLiked.isLiked === true ? "post__actions-icon--liked" : ""
+            }`}
+            onClick={toggleLike}
+          /> */}
+          <ThumbUpIcon
+            fontSize="large"
             className={`post__actions-icon ${
               postLiked.isLiked === true ? "post__actions-icon--liked" : ""
             }`}

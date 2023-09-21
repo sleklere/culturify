@@ -45,6 +45,10 @@
     justify-content: center;
     gap: 1.5rem;
 
+    // icon
+    .MuiSvgIcon-fontSizeLarge {
+      font-size: $fs-largest;
+    }
     &-icon {
       color: $color-grey-dark-2;
       height: 2rem;
@@ -52,7 +56,9 @@
       transition: $transition-short;
 
       &:hover {
-        color: $color-tertiary;
+        @media (hover: hover) {
+          // color: lighten($color-tertiary, 10);
+        }
         cursor: pointer;
       }
 

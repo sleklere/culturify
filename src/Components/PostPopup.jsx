@@ -2,7 +2,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProfileLink from "./ProfileLink";
 import PostActions from "./PostActions";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ function PostPopup() {
   // console.log("Post Popup Component");
 
   useEffect(() => {
-    if (post !== "") return;
+    // if (post !== "") return;
     async function fetchPost() {
       return await axios(process.env.REACT_APP_API_URL + `/posts/${postId}`, {
         method: "get",
@@ -32,7 +32,7 @@ function PostPopup() {
         setPostLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [postId, token, reRender, post]);
+  }, [postId, token, reRender]);
 
   function closePopup() {
     // temporary solution
@@ -40,10 +40,10 @@ function PostPopup() {
     navigate(-1);
   }
 
-  function toggleReRender() {
+  const toggleReRender = useCallback(function () {
     // console.log("re render handler");
     setReRender((prevState) => !prevState);
-  }
+  }, []);
 
   return (
     <>
@@ -65,7 +65,7 @@ function PostPopup() {
             />
             <div className="post-popup__post">
               <p>{post.text}</p>
-              <PostActions post={post} reRenderParent={toggleReRender} />
+              <PostActions post={post} reloadPost={toggleReRender} />
             </div>
             {post.numComments > 0 && (
               <div className="post__comments">
